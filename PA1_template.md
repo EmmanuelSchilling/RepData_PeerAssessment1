@@ -26,27 +26,38 @@ interval: Identifier for the 5-minute interval in which measurement was taken
 The dataset is stored in a comma-separated-value (CSV) file and there are a total of 17,568 observations in this dataset.
 
 ## Loading and preprocessing the data
-```{r}
+
+```r
     data <- read.csv('activity.csv')
 ```
 ## What is mean total number of steps taken per day?
-```{r}
+
+```r
     means <- aggregate(data$steps, by=list(data$date), FUN=mean, na.rm=TRUE)
     hist(means$x, main='Total Number of Steps Taken Per Day', xlab='Number of Steps')
+```
 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+
+```r
     # Calculate daily mean and median.
     daily_mean <- mean(means$x[!is.nan(means$x)])
     daily_median <- median(means$x[!is.nan(means$x)])
 ```
-The daily mean is: `r daily_mean`.
+The daily mean is: 37.3825996.
 
-The daily median is: `r daily_median`.
+The daily median is: 37.3784722.
 
 ## What is the average daily activity pattern?
-```{r}
+
+```r
     avg_num_steps_taken <- aggregate(data$steps, by=list(data$interval), FUN=mean, na.rm=TRUE)
     plot(unique(data$interval), avg_num_steps_taken$x, type="l", xlab="Interval", ylab="Number of steps taken")
+```
 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+
+```r
     # Calculate the interval corresponding to the maximum number of steps.
     max_steps <- max(avg_num_steps_taken$x)
     for (i in 1:length(avg_num_steps_taken$x)) {
@@ -56,16 +67,18 @@ The daily median is: `r daily_median`.
     }
     max_interval <- avg_num_steps_taken$Group.1[max_steps_interval]
 ```
-The interval corresponding to the maximum number of steps is: `r max_interval`.
+The interval corresponding to the maximum number of steps is: 835.
 
 ## Imputing missing values
-```{r}
+
+```r
     # Calculate the number of missing values.
     num_missing_values <- length(data$steps[!complete.cases(data)])
 ```
-There are `r num_missing_values` incomplete cases in the original data set.
+There are 2304 incomplete cases in the original data set.
 
-```{r}
+
+```r
     # Fill in the missing data with the average value for the corresponding interval.
     missing_indices <- complete.cases(data)
     filled_data <- data
@@ -82,23 +95,28 @@ There are `r num_missing_values` incomplete cases in the original data set.
     
     # Plot the frequency of the total number of steps per day.
     hist(filled_means$x, main='Total Number of Steps Taken Per Day', xlab='Number of Steps')
-    
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+
+```r
     # Calculate the daily mean and median.
     filled_daily_mean <- mean(filled_means$x)
     filled_daily_median <- median(filled_means$x)
 ```
-The daily mean is: `r daily_mean`.
+The daily mean is: 37.3825996.
 
-The daily mean value for the filled data set is: `r filled_daily_mean`.
+The daily mean value for the filled data set is: 37.325592.
 
-The daily median is: `r daily_median`.
+The daily median is: 37.3784722.
 
-The daily median value for the filled data set is: `r filled_daily_median`.
+The daily median value for the filled data set is: 36.9479167.
 
 For the given data set, replacing the missing values with the corresponding average value did not significantly effect the mean and median values.
 
 ## Are there differences in activity patterns between weekdays and weekends?
-```{r}
+
+```r
     library(lattice)
     factor_date <- function(date) {
         day <- weekdays(as.POSIXlt(date))
@@ -120,3 +138,5 @@ For the given data set, replacing the missing values with the corresponding aver
     
     with(filled_avg_num_steps_taken, xyplot(x~Group.2|Group.1, type="l", xlab="Interval", ylab="Number of steps"))
 ```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
