@@ -4,7 +4,7 @@ output:
   html_document:
     keep_md: true
 ---
-This document was prepared in fulfillment of "Peer Assessment 1" of the Coursera offering "Reproducible Research".  The assignment introduction (copied from the web page) is provided below:
+This document was prepared in fulfillment of "Peer Assessment 1" of the Coursera offering "Reproducible Research".  The assignment introduction (copied from the course web page) is provided below:
 
 It is now possible to collect a large amount of data about personal movement using activity monitoring devices such as a Fitbit, Nike Fuelband, or Jawbone Up. These type of devices are part of the “quantified self” movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. But these data remain under-utilized both because the raw data are hard to obtain and there is a lack of statistical methods and software for processing and interpreting the data.
 
@@ -120,3 +120,5 @@ For the given data set, replacing the missing values with the corresponding aver
     
     with(filled_avg_num_steps_taken, xyplot(x~Group.2|Group.1, type="l", xlab="Interval", ylab="Number of steps"))
 ```
+
+The peak activity time for weekdays is centered in the morning.  This is also the peak activity time for weekends.  However weekend activity levels are greater throughout the day.

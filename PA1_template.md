@@ -1,10 +1,5 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
-This document was prepared in fulfillment of "Peer Assessment 1" of the Coursera offering "Reproducible Research".  The assignment introduction (copied from the web page) is provided below:
+# Reproducible Research: Peer Assessment 1
+This document was prepared in fulfillment of "Peer Assessment 1" of the Coursera offering "Reproducible Research".  The assignment introduction (copied from the course web page) is provided below:
 
 It is now possible to collect a large amount of data about personal movement using activity monitoring devices such as a Fitbit, Nike Fuelband, or Jawbone Up. These type of devices are part of the “quantified self” movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. But these data remain under-utilized both because the raw data are hard to obtain and there is a lack of statistical methods and software for processing and interpreting the data.
 
@@ -37,7 +32,7 @@ The dataset is stored in a comma-separated-value (CSV) file and there are a tota
     hist(means$x, main='Total Number of Steps Taken Per Day', xlab='Number of Steps')
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+![](./PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
 
 ```r
     # Calculate daily mean and median.
@@ -55,7 +50,7 @@ The daily median is: 37.3784722.
     plot(unique(data$interval), avg_num_steps_taken$x, type="l", xlab="Interval", ylab="Number of steps taken")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![](./PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 ```r
     # Calculate the interval corresponding to the maximum number of steps.
@@ -97,7 +92,7 @@ There are 2304 incomplete cases in the original data set.
     hist(filled_means$x, main='Total Number of Steps Taken Per Day', xlab='Number of Steps')
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![](./PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
 
 ```r
     # Calculate the daily mean and median.
@@ -139,4 +134,6 @@ For the given data set, replacing the missing values with the corresponding aver
     with(filled_avg_num_steps_taken, xyplot(x~Group.2|Group.1, type="l", xlab="Interval", ylab="Number of steps"))
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![](./PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
+
+The peak activity time for weekdays is centered in the morning.  This is also the peak activity time for weekends.  However weekend activity levels are greater throughout the day.
